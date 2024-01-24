@@ -18,6 +18,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var commentText: UITextField!
     
     @IBOutlet weak var mapView: MKMapView!
+    
+    
     var locationManager = CLLocationManager()
     var chosenLatitude = Double()
     var chosenLongitude = Double()
