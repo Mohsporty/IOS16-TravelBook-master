@@ -33,6 +33,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         mapView.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -60,44 +61,43 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 let results = try context.fetch(fetchRequest)
                 if results.count > 0 {
                     
-                    for result in results as! [NSManagedObject] {
+           for result in results as! [NSManagedObject] {
                         
-                        if let title = result.value(forKey: "title") as? String {
-                            annotationTitle = title
+          if let title = result.value(forKey: "title") as? String {
+                 annotationTitle = title
                             
-                            if let subtitle = result.value(forKey: "subtitle") as? String {
-                                annotationSubtitle = subtitle
+          if let subtitle = result.value(forKey: "subtitle") as? String {
+             annotationSubtitle = subtitle
                                 
-                                if let latitude = result.value(forKey: "latitude") as? Double {
-                                    annotationLatitude = latitude
+           if let latitude = result.value(forKey: "latitude") as? Double {
+               annotationLatitude = latitude
                                     
-                                    if let longitude = result.value(forKey: "longitude") as? Double {
-                                        annotationLongitude = longitude
+        if let longitude = result.value(forKey: "longitude") as? Double {
+            annotationLongitude = longitude
                                         
-                                        let annotation = MKPointAnnotation()
-                                        annotation.title = annotationTitle
-                                        annotation.subtitle = annotationSubtitle
-                                        let coordinate = CLLocationCoordinate2D(latitude: annotationLatitude, longitude: annotationLongitude)
-                                        annotation.coordinate = coordinate
+            let annotation = MKPointAnnotation()
+                annotation.title = annotationTitle
+                annotation.subtitle = annotationSubtitle
+                    let coordinate = CLLocationCoordinate2D(latitude: annotationLatitude, longitude: annotationLongitude)
+            annotation.coordinate = coordinate
                                         
-                                        mapView.addAnnotation(annotation)
-                                        nameText.text = annotationTitle
-                                        commentText.text = annotationSubtitle
+                        mapView.addAnnotation(annotation)
+                        nameText.text = annotationTitle
+                        commentText.text = annotationSubtitle
                                         
-                                        locationManager.stopUpdatingLocation()
+                        locationManager.stopUpdatingLocation()
                                         
-                                        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-                                        let region = MKCoordinateRegion(center: coordinate, span: span)
-                                        mapView.setRegion(region, animated: true)
+            let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                let region = MKCoordinateRegion(center: coordinate, span: span)
+                mapView.setRegion(region, animated: true)
                                         
-                                        
-                                    }
-                                }
+                 }
+           }
              
-                            }
-                        }
-                    }
-                }
+       }
+          }
+       }
+        }
             } catch {
                 print("error")
             }

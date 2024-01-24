@@ -43,12 +43,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             if results.count > 0 {
                 
-                self.titleArray.removeAll(keepingCapacity: false)
-                self.idArray.removeAll(keepingCapacity: false)
+            self.titleArray.removeAll(keepingCapacity: false)
+            self.idArray.removeAll(keepingCapacity: false)
                 
-                for result in results as! [NSManagedObject] {
+            for result in results as! [NSManagedObject] {
                     
-                    if let title = result.value(forKey: "title") as? String {
+            if let title = result.value(forKey: "title") as? String {
                         self.titleArray.append(title)
                     }
                     
